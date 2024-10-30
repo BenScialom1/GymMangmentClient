@@ -39,9 +39,9 @@
                 <Label Text="Already have an account? Login"
                    HorizontalOptions="Center"
                    Margin="0,20,0,0">
-                    <Label.GestureRecognizers>
+                    <!--<Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnLoginTapped"/>
-                    </Label.GestureRecognizers>
+                    </Label.GestureRecognizers>-->
                 </Label>
 
             </StackLayout>

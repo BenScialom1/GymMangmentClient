@@ -7,30 +7,51 @@
              Title="LoginPage">
     <VerticalStackLayout>
         <ScrollView>
-            <StackLayout Padding="20" VerticalOptions="Center">
+            <StackLayout Padding="30" VerticalOptions="Center">
 
-                <Label Text="Welcome Back!"
-                   FontSize="24"
+                <Label Text="ברוכים הבאים!"
+                   FontSize="28"
+                   FontAttributes="Bold"
                    HorizontalOptions="Center"
+                   TextColor="#333"
                    Margin="0,0,0,20"/>
 
-                <Entry Placeholder="Email" 
-                   Margin="0,0,0,10"
-                   Keyboard="Email"/>
+                <Frame BackgroundColor="White"
+                   CornerRadius="10"
+                   HasShadow="True"
+                   Padding="20">
+                    <StackLayout>
 
-                <Entry Placeholder="Password" 
-                   IsPassword="True" 
-                   Margin="0,0,0,20"/>
+                        <Entry Placeholder="Username" 
+                           Margin="0,0,0,10"
+                           Keyboard="Email"
+                           BackgroundColor="#EFEFEF"
+                           TextColor="#333"
+                           PlaceholderColor="#A0A0A0"
+                            />
 
-                <Button Text="Login" 
-                    BackgroundColor="Blue" 
-                    TextColor="White"
-                    Padding="10,0"
-                    VerticalOptions="Center"/>
+                        <Entry Placeholder="Password" 
+                           IsPassword="True"
+                           Margin="0,0,0,20"
+                           BackgroundColor="#EFEFEF"
+                           TextColor="#333"
+                           PlaceholderColor="#A0A0A0"
+                            />
+
+                        <Button Text="Login" 
+                            BackgroundColor="#007BFF" 
+                            TextColor="White"
+                            CornerRadius="5"
+                            Padding="10,0"
+                            VerticalOptions="Center"/>
+
+                    </StackLayout>
+                </Frame>
 
                 <Label Text="Don't have an account? Register"
                    HorizontalOptions="Center"
-                   Margin="0,20,0,0">
+                   Margin="0,20,0,0"
+                   TextColor="#007BFF">
                     <!--<Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnRegisterTapped"/>
                     </Label.GestureRecognizers>-->
