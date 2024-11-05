@@ -9,7 +9,7 @@ namespace GymMangmentClient
         {
             InitializeComponent();
 
-            MainPage = new LoginPage(vm);
+            MainPage = new AppShell();
         }
     }
 }

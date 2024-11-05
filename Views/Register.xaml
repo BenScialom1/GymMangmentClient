@@ -4,45 +4,49 @@
              x:Class="GymMangmentClient.Views.Register"
              xmlns:viewmodel="clr-namespace:GymMangmentClient.ViewModels"
              x:DataType="viewmodel:RegisterPageViewModel"
-             Title="Register">
+             Title="הרשמה">
     <VerticalStackLayout>
         <ScrollView>
-            <StackLayout Padding="20" VerticalOptions="Center">
+            <StackLayout Padding="20">
 
-                <Label Text="Create an Account"
-                   FontSize="24"
-                   HorizontalOptions="Center"
-                   Margin="0,0,0,20"/>
+                <!-- Username -->
+                <Entry x:Name="usernameEntry" 
+                   Placeholder="שם משתמש" 
+                   HorizontalOptions="FillAndExpand" 
+                   Margin="0,10" />
 
-                <Entry Placeholder="Username" 
-                   Margin="0,0,0,10"
-                   Keyboard="Text"/>
+                <!-- Password -->
+                <Entry x:Name="passwordEntry" 
+                   Placeholder="סיסמה" 
+                   IsPassword="True" 
+                   HorizontalOptions="FillAndExpand" 
+                   Margin="0,10" />
 
-                <Entry Placeholder="Email" 
-                   Margin="0,0,0,10"
-                   Keyboard="Email"/>
+                <!-- Age -->
+                <Entry x:Name="ageEntry" 
+                   Placeholder="גיל" 
+                   Keyboard="Numeric" 
+                   HorizontalOptions="FillAndExpand" 
+                   Margin="0,10" />
 
-                <Entry Placeholder="Password" 
-                   Margin="0,0,0,10"
-                   IsPassword="True"/>
+                <!-- Gender -->
+                <Picker x:Name="genderPicker" 
+                    Title="Select מגדר" 
+                    Margin="0,10">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Male</x:String>
+                            <x:String>Female</x:String>
+                            <x:String>Other</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
 
-                <Entry Placeholder="Confirm Password" 
-                   Margin="0,0,0,20"
-                   IsPassword="True"/>
-
+                <!-- Register Button -->
                 <Button Text="Register" 
-                    BackgroundColor="Blue" 
-                    TextColor="White"
-                    Padding="10,0"
-                    VerticalOptions="Center"/>
-
-                <Label Text="Already have an account? Login"
-                   HorizontalOptions="Center"
-                   Margin="0,20,0,0">
-                    <!--<Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnLoginTapped"/>
-                    </Label.GestureRecognizers>-->
-                </Label>
+                    Clicked="OnRegisterButtonClicked"
+                    HorizontalOptions="FillAndExpand" 
+                    Margin="0,20"/>
 
             </StackLayout>
         </ScrollView>
