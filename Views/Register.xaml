@@ -42,11 +42,11 @@
                     </Picker.ItemsSource>
                 </Picker>
 
-                <!-- Register Button -->
+                <!-- Register Button --><!--
                 <Button Text="Register" 
                     Clicked="OnRegisterButtonClicked"
                     HorizontalOptions="FillAndExpand" 
-                    Margin="0,20"/>
+                    Margin="0,20"/>-->
 
             </StackLayout>
         </ScrollView>

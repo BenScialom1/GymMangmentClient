@@ -159,5 +159,6 @@ namespace GymMangmentClient.ViewModels
                 OnPropertyChanged(nameof(User_Type));
             }
         }
+     
     }
 }

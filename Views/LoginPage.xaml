@@ -22,7 +22,7 @@
                    Padding="20">
                     <StackLayout>
 
-                        <Entry Placeholder="Username" 
+                        <Entry Placeholder="שם משתמש" 
                            Margin="0,0,0,10"
                            Keyboard="Email"
                            BackgroundColor="#EFEFEF"
@@ -30,7 +30,7 @@
                            PlaceholderColor="#A0A0A0"
                             />
 
-                        <Entry Placeholder="Password" 
+                        <Entry Placeholder="סיסמה" 
                            IsPassword="True"
                            Margin="0,0,0,20"
                            BackgroundColor="#EFEFEF"
@@ -38,8 +38,8 @@
                            PlaceholderColor="#A0A0A0"
                             />
 
-                        <Button Text="Login" 
-                            BackgroundColor="#007BFF" 
+                        <Button Text="התחבר" 
+                            BackgroundColor="CadetBlue" 
                             TextColor="White"
                             CornerRadius="5"
                             Padding="10,0"
@@ -48,14 +48,13 @@
                     </StackLayout>
                 </Frame>
 
-                <Label Text="Don't have an account? Register"
+                <Label Text="אין לך משתמש הירשם כאן"
                    HorizontalOptions="Center"
                    Margin="0,20,0,0"
-                   TextColor="#007BFF">
-                    <!--<Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnRegisterTapped"/>
-                    </Label.GestureRecognizers>-->
+                   TextColor="BurlyWood">
+                   
                 </Label>
+                <Button Text="הירשם" BackgroundColor="CadetBlue"/>
 
             </StackLayout>
         </ScrollView>
