@@ -1,4 +1,5 @@
-﻿using GymMangmentClient.ViewModels;
+﻿using GymMangmentClient.Services;
+using GymMangmentClient.ViewModels;
 using GymMangmentClient.Views;
 using Microsoft.Extensions.Logging;
 
@@ -20,6 +21,7 @@ namespace GymMangmentClient
             builder.Services.AddSingleton<LoginPageViewModel>();
             builder.Services.AddSingleton<Register>();
             builder.Services.AddSingleton<RegisterPageViewModel>();
+            builder.Services.AddSingleton<GymMangmentWebApi>();
 
 #if DEBUG
     		builder.Logging.AddDebug();

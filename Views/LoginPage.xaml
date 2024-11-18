@@ -28,6 +28,8 @@
                            BackgroundColor="#EFEFEF"
                            TextColor="#333"
                            PlaceholderColor="#A0A0A0"
+                               Text="{Binding Email}"
+                               IsEnabled="{Binding NotInServerCall}"
                             />
 
                         <Entry Placeholder="סיסמה" 
@@ -36,14 +38,15 @@
                            BackgroundColor="#EFEFEF"
                            TextColor="#333"
                            PlaceholderColor="#A0A0A0"
+                               Text="{Binding Password}"
+                               IsEnabled="{Binding NotInServerCall}"
+                               
                             />
 
-                        <Button Text="התחבר" 
-                            BackgroundColor="CadetBlue" 
-                            TextColor="White"
-                            CornerRadius="5"
-                            Padding="10,0"
-                            VerticalOptions="Center"/>
+                        <Button 
+                         Text="Login"
+                         Command="{Binding LoginCommand}" IsEnabled="{Binding NotInServerCall}" />
+                        <Label Text="{Binding ErrorMsg}" TextColor="Red" HorizontalOptions="Center"></Label>
 
                     </StackLayout>
                 </Frame>

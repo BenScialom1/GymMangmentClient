@@ -1,5 +1,7 @@
 ﻿using GymMangmentClient.Models;
 using GymMangmentClient.Services;
+using GymMangmentClient.Views;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,61 +14,106 @@ namespace GymMangmentClient.ViewModels
 {
     public class LoginPageViewModel:ViewModelBase
     {
-        public GymMangmentWebApi service;
-        private readonly IServiceProvider serviceProvider;
-
-        public ICommand LoginCommand { get; set; }
-        public ICommand GoToRegisterCommand { get; set; }
-        public string Email { get; set; }
-
-        public string Password { get; set; }
-
-        public LoginPageViewModel(GymMangmentWebApi service, IServiceProvider serviceProvider)
+        private GymMangmentWebApi proxy;
+        private IServiceProvider serviceProvider;
+        public LoginPageViewModel(GymMangmentWebApi proxy, IServiceProvider serviceProvider)
         {
-            this.service = service;
             this.serviceProvider = serviceProvider;
-            this.LoginCommand = new Command(OnLogin);
-            this.GoToRegisterCommand = new Command(OnRegisterClicked);
+            this.proxy = proxy;
+            LoginCommand = new Command(OnLogin);
+            RegisterCommand = new Command(OnRegister);
+            email = "";
+            password = "";
+            InServerCall = false;
+            errorMsg = "";
         }
 
-        public async void OnLogin()
+        private string email;
+        private string password;
+
+        public string Email
         {
-            Logininfo info = new Logininfo
+            get => email;
+            set
             {
-                Username = this.Email,
-                Password = this.Password
-            };
-            User user = await service.Login(info);
-            //if (user != null)
-            //{
-            //    if (user.UserType == "3")
-            //    {
-            //        var businessesPage = serviceProvider.GetRequiredService<BusinessesPage>();
-            //        await App.Current.MainPage.Navigation.PushAsync(businessesPage);
-            //    }
-            //    if (user.UserType == "2")
-            //    {
-            //        //Navigate to the main page
-            //        App.Current.MainPage = new MainPage();
-            //    }
-            //    //Navigate to the main page
-            //    //App.Current.MainPage = new MainPage();
-            //    // קבלת הדף דרך ה-DI וניווט אליו
-            //    //var businessesPage = serviceProvider.GetRequiredService<BusinessesPage>();
-            //    //await App.Current.MainPage.Navigation.PushAsync(businessesPage);
-            //}
-
-            
-            
-                Debug.WriteLine("Login failed");
-            
+                if (email != value)
+                {
+                    email = value;
+                    OnPropertyChanged(nameof(Email));
+                }
+            }
         }
 
-        private async void OnRegisterClicked()
+        public string Password
         {
-            // קבלת הדף דרך ה-DI וניווט אליו
-            var registrationPage = serviceProvider.GetRequiredService<RegisterPageViewModel>();
-            await App.Current.MainPage.Navigation.PushAsync(registrationPage);
+            get => password;
+            set
+            {
+                if (password != value)
+                {
+                    password = value;
+                    OnPropertyChanged(nameof(Password));
+                }
+            }
+        }
+
+        private string errorMsg;
+        public string ErrorMsg
+        {
+            get => errorMsg;
+            set
+            {
+                if (errorMsg != value)
+                {
+                    errorMsg = value;
+                    OnPropertyChanged(nameof(ErrorMsg));
+                }
+            }
+        }
+
+
+        public ICommand LoginCommand { get; }
+        public ICommand RegisterCommand { get; }
+
+
+
+        private async void OnLogin()
+        {
+            //Choose the way you want to blobk the page while indicating a server call
+            InServerCall = true;
+            ErrorMsg = "";
+            //Call the server to login
+            Logininfo loginInfo = new Logininfo { Username = Email, Password = Password };
+            User? u = await this.proxy.LoginAsync(loginInfo);
+
+            InServerCall = false;
+
+            //Set the application logged in user to be whatever user returned (null or real user)
+            ((App)Application.Current).LoggedInUser = u;
+            if (u == null)
+            {
+                ErrorMsg = "Invalid username or password";
+            }
+            else
+            {
+                ErrorMsg = "";
+                //Navigate to the main page
+                AppShell shell = serviceProvider.GetService<AppShell>();
+               
+               
+                ((App)Application.Current).MainPage = shell;
+                Shell.Current.FlyoutIsPresented = false; //close the flyout
+                Shell.Current.GoToAsync("HomePage"); //Navigate to the Tasks tab page
+            }
+        }
+
+        private void OnRegister()
+        {
+            ErrorMsg = "";
+            Email = "";
+            Password = "";
+            // Navigate to the Register View page
+            ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<Register>());
         }
     }
 }
