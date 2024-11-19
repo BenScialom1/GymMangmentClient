@@ -22,24 +22,24 @@ namespace GymMangmentClient.ViewModels
             this.proxy = proxy;
             LoginCommand = new Command(OnLogin);
             RegisterCommand = new Command(OnRegister);
-            email = "";
+            username = "";
             password = "";
             InServerCall = false;
             errorMsg = "";
         }
 
-        private string email;
+        private string username;
         private string password;
 
-        public string Email
+        public string Username
         {
-            get => email;
+            get => username;
             set
             {
-                if (email != value)
+                if (username != value)
                 {
-                    email = value;
-                    OnPropertyChanged(nameof(Email));
+                    username = value;
+                    OnPropertyChanged(nameof(Username));
                 }
             }
         }
@@ -56,7 +56,7 @@ namespace GymMangmentClient.ViewModels
                 }
             }
         }
-
+        
         private string errorMsg;
         public string ErrorMsg
         {
@@ -83,7 +83,7 @@ namespace GymMangmentClient.ViewModels
             InServerCall = true;
             ErrorMsg = "";
             //Call the server to login
-            Logininfo loginInfo = new Logininfo { Username = Email, Password = Password };
+            Logininfo loginInfo = new Logininfo { Username = Username, Password = Password };
             User? u = await this.proxy.LoginAsync(loginInfo);
 
             InServerCall = false;
@@ -102,15 +102,15 @@ namespace GymMangmentClient.ViewModels
                
                
                 ((App)Application.Current).MainPage = shell;
-                Shell.Current.FlyoutIsPresented = false; //close the flyout
-                Shell.Current.GoToAsync("HomePage"); //Navigate to the Tasks tab page
+                Shell.Current.FlyoutIsPresented = false;
+                Shell.Current.GoToAsync("HomePage"); 
             }
         }
 
         private void OnRegister()
         {
             ErrorMsg = "";
-            Email = "";
+            Username = "";
             Password = "";
             // Navigate to the Register View page
             ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<Register>());
