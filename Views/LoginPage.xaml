@@ -22,7 +22,7 @@
                    Padding="20">
                     <StackLayout>
 
-                        <Entry Placeholder="שם משתמש" 
+                        <Entry Placeholder="Email" 
                            Margin="0,0,0,10"
                            Keyboard="Email"
                            BackgroundColor="#EFEFEF"
@@ -32,7 +32,7 @@
                                IsEnabled="{Binding NotInServerCall}"
                             />
 
-                        <Entry Placeholder="סיסמה" 
+                        <Entry Placeholder="Password" 
                            IsPassword="True"
                            Margin="0,0,0,20"
                            BackgroundColor="#EFEFEF"
@@ -44,22 +44,21 @@
                             />
 
                         <Button 
-                         Text="Login"
-                         Command="{Binding LoginCommand}" IsEnabled="{Binding NotInServerCall}" />
+        Text="Login"
+        Command="{Binding LoginCommand}" IsEnabled="{Binding NotInServerCall}"/>
                         <Label Text="{Binding ErrorMsg}" TextColor="Red" HorizontalOptions="Center"></Label>
+                        <Label 
+        Text="Don't have an account? Register"
+        TextColor="Blue"
+        HorizontalOptions="Center"
+        VerticalOptions="End" IsEnabled="{Binding NotInServerCall}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red"></ActivityIndicator>
 
                     </StackLayout>
-                </Frame>
-
-                <Label Text="אין לך משתמש הירשם כאן"
-                   HorizontalOptions="Center"
-                   Margin="0,20,0,0"
-                   TextColor="BurlyWood">
-                   
-                </Label>
-                <Button Text="הירשם" BackgroundColor="CadetBlue"/>
-
-            </StackLayout>
         </ScrollView>
     </VerticalStackLayout>
 </ContentPage>

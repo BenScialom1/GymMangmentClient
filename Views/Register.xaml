@@ -5,50 +5,107 @@
              xmlns:viewmodel="clr-namespace:GymMangmentClient.ViewModels"
              x:DataType="viewmodel:RegisterPageViewModel"
              Title="הרשמה">
-    <VerticalStackLayout>
-        <ScrollView>
-            <StackLayout Padding="20">
+    <ScrollView>
+        <VerticalStackLayout Spacing="20">
 
-                <!-- Username -->
-                <Entry x:Name="usernameEntry" 
-                   Placeholder="שם משתמש" 
-                   HorizontalOptions="FillAndExpand"  
-                   Margin="0,10" />
+            <!-- Title Section -->
+            <Label Text="Create Account"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="Black"/>
 
-                <!-- Password -->
-                <Entry x:Name="passwordEntry" 
-                   Placeholder="סיסמה" 
-                   IsPassword="True" 
-                   HorizontalOptions="FillAndExpand" 
-                   Margin="0,10" />
+            <!-- Email Field -->
+            <Entry x:Name="EmailEntry"
+                   Placeholder="Email"
+                   Keyboard="Email"
+                   TextColor="Black"
+                   BackgroundColor="#F0F0F0"
+                   Margin="0,10"
+                   
+                   />
 
-                <!-- Age -->
-                <Entry x:Name="ageEntry" 
-                   Placeholder="גיל" 
-                   Keyboard="Numeric" 
-                   HorizontalOptions="FillAndExpand" 
-                   Margin="0,10" />
+            <!-- Username Field -->
+            <Entry x:Name="UsernameEntry"
+                   Placeholder="Username"
+                   TextColor="Black"
+                   BackgroundColor="#F0F0F0"
+                   Margin="0,10"
+                   
+                   />
 
-                <!-- Gender -->
-                <Picker x:Name="genderPicker" 
-                    Title="Select מגדר" 
-                    Margin="0,10">
-                    <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>Male</x:String>
-                            <x:String>Female</x:String>
-                            <x:String>Other</x:String>
-                        </x:Array>
-                    </Picker.ItemsSource>
-                </Picker>
+            <!-- Password Field -->
+            <Entry x:Name="PasswordEntry"
+                   Placeholder="Password"
+                   IsPassword="True"
+                   TextColor="Black"
+                   BackgroundColor="#F0F0F0"
+                   Margin="0,10"
+                   
+                   />
 
-                <!-- Register Button --><!--
-                <Button Text="Register" 
-                    Clicked="OnRegisterButtonClicked"
-                    HorizontalOptions="FillAndExpand" 
-                    Margin="0,20"/>-->
+            <!-- Birthday Picker -->
+            <DatePicker x:Name="BirthdayPicker"
+                        Date="{Binding DateOfBirth}"
+                        MinimumDate="1900-01-01"
+                        MaximumDate="2011-01-01"
+                        BackgroundColor="#F0F0F0"
+                        Margin="0,10"
+                       />
 
+            <!-- Address Field -->
+            <Editor x:Name="AddressEditor"
+                    Placeholder="Enter Address"
+                    HeightRequest="100"
+                    TextColor="Black"
+                    BackgroundColor="#F0F0F0"
+                    Margin="0,10"
+                   />
+
+            <!-- Difficulty Dropdown -->
+            <Picker x:Name="DifficultyPicker"
+                    Title="Select Difficulty"
+                    BackgroundColor="#F0F0F0"
+                    Margin="0,10"
+                   >
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Beginner</x:String>
+                        <x:String>Intermediate</x:String>
+                        <x:String>Expert</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <!-- Gender Selection -->
+            <StackLayout Orientation="Horizontal" Spacing="20" HorizontalOptions="Center">
+                <RadioButton GroupName="Gender"
+                             Content="Male"
+                             Value="Male"
+                             BackgroundColor="Transparent"
+                             TextColor="Black"/>
+                <RadioButton GroupName="Gender"
+                             Content="Female"
+                             Value="Female"
+                             BackgroundColor="Transparent"
+                             TextColor="Black"/>
+                <RadioButton GroupName="Gender"
+                             Content="Other"
+                             Value="Other"
+                             BackgroundColor="Transparent"
+                             TextColor="Black"/>
             </StackLayout>
-        </ScrollView>
-    </VerticalStackLayout>
+
+            <!-- Submit Button -->
+            <Button Text="Register"
+                    BackgroundColor="CadetBlue"
+                    TextColor="White"
+                    CornerRadius="20"
+                    HeightRequest="50"
+                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    Margin="0,20"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

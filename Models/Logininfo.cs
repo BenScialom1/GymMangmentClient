@@ -8,7 +8,7 @@ namespace GymMangmentClient.Models
 {
     public class Logininfo
     {
-        public string Username { get; set; }
+        public string Email { get; set; }
         public string Password { get; set; }
     }
 }

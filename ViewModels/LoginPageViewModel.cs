@@ -22,24 +22,24 @@ namespace GymMangmentClient.ViewModels
             this.proxy = proxy;
             LoginCommand = new Command(OnLogin);
             RegisterCommand = new Command(OnRegister);
-            username = "";
+            email = "";
             password = "";
             InServerCall = false;
             errorMsg = "";
         }
 
-        private string username;
+        private string email;
         private string password;
 
-        public string Username
+        public string Email
         {
-            get => username;
+            get => email;
             set
             {
-                if (username != value)
+                if (email != value)
                 {
-                    username = value;
-                    OnPropertyChanged(nameof(Username));
+                    email = value;
+                    OnPropertyChanged(nameof(Email));
                 }
             }
         }
@@ -56,7 +56,7 @@ namespace GymMangmentClient.ViewModels
                 }
             }
         }
-        
+
         private string errorMsg;
         public string ErrorMsg
         {
@@ -83,7 +83,7 @@ namespace GymMangmentClient.ViewModels
             InServerCall = true;
             ErrorMsg = "";
             //Call the server to login
-            Logininfo loginInfo = new Logininfo { Username = Username, Password = Password };
+            Logininfo loginInfo = new Logininfo { Email = Email, Password = Password };
             User? u = await this.proxy.LoginAsync(loginInfo);
 
             InServerCall = false;
@@ -92,25 +92,25 @@ namespace GymMangmentClient.ViewModels
             ((App)Application.Current).LoggedInUser = u;
             if (u == null)
             {
-                ErrorMsg = "Invalid username or password";
+                ErrorMsg = "Invalid email or password";
             }
             else
             {
                 ErrorMsg = "";
                 //Navigate to the main page
-                AppShell shell = serviceProvider.GetService<AppShell>();
-               
-               
-                ((App)Application.Current).MainPage = shell;
-                Shell.Current.FlyoutIsPresented = false;
-                Shell.Current.GoToAsync("HomePage"); 
+                //AppShell shell = serviceProvider.GetService<AppShell>();
+                //TasksViewModel tasksViewModel = serviceProvider.GetService<TasksViewModel>();
+                //tasksViewModel.Refresh(); //Refresh data and user in the tasksview model as it is a singleton
+                //((App)Application.Current).MainPage = shell;
+                //Shell.Current.FlyoutIsPresented = false; //close the flyout
+                //Shell.Current.GoToAsync("Tasks"); //Navigate to the Tasks tab page
             }
         }
 
         private void OnRegister()
         {
             ErrorMsg = "";
-            Username = "";
+            Email = "";
             Password = "";
             // Navigate to the Register View page
             ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<Register>());
