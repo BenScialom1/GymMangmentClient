@@ -9,13 +9,13 @@
     Title="GymMangmentClient">
 
     <ShellContent
-        Title="Register"
-        ContentTemplate="{DataTemplate views:Register}"
-        Route="Register" />
-    <ShellContent
         Title="Login"
         ContentTemplate="{DataTemplate views:LoginPage}"
         Route="Login" />
+    <ShellContent
+        Title="Register"
+        ContentTemplate="{DataTemplate views:Register}"
+        Route="Register" />
 
 
 </Shell>
