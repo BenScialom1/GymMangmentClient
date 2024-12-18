@@ -48,48 +48,33 @@ namespace GymMangmentClient.Services
         }
 
 
-        public async Task<User> Login(Logininfo info)
+       
+
+        public async Task<User?> LoginAsync(Logininfo userInfo)
         {
-            // Set the URL for the specific login API function
+            //Set URI to the specific function API
             string url = $"{this.baseUrl}login";
             try
             {
-                // Serialize the login info into a JSON string using the configured options
-                string json = JsonSerializer.Serialize(info, jsonSerializerOptions);
-
-                // Create the content to send in the POST request with proper encoding and content type
+                //Call the server API
+                string json = JsonSerializer.Serialize(userInfo);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                // Send the POST request to the server API
                 HttpResponseMessage response = await client.PostAsync(url, content);
                 //Check status
                 if (response.IsSuccessStatusCode)
                 {
                     //Extract the content as string
                     string resContent = await response.Content.ReadAsStringAsync();
-
                     //Desrialize result
                     JsonSerializerOptions options = new JsonSerializerOptions
                     {
-                        // Ensure case-insensitive matching of property names
                         PropertyNameCaseInsensitive = true
                     };
-
-                    User result = JsonSerializer.Deserialize<User>(resContent, options);
-
-                    // Store the logged-in user details for further use
-                    this.LoggedInUser = result;
-
-                    // Show a success message to the user
-                    await Application.Current.MainPage.DisplayAlert("Login", "Login Succeced", "ok");
-                    // Return the logged-in user details
+                    User? result = JsonSerializer.Deserialize<User>(resContent, options);
                     return result;
                 }
                 else
                 {
-                    // ניתן להוסיף תנאים שיציגו הודעות שגיאה מתאימות לסוגים השונים
-                    // טיפול בתקלות שעלולות להתרחש במהלך התחברות
-                    await Application.Current.MainPage.DisplayAlert("Login", "Login Faild!", "ok");
                     return null;
                 }
             }
@@ -98,7 +83,6 @@ namespace GymMangmentClient.Services
                 return null;
             }
         }
-
         public async Task<int?> Register(User user)
         {
             // Set the URL to point to the specific API endpoint for registering a user
@@ -136,39 +120,6 @@ namespace GymMangmentClient.Services
             catch (Exception ex)
             {
                 // If there is an exception, return null (indicating the registration failed)
-                return null;
-            }
-        }
-        public async Task<User?> LoginAsync(Logininfo userInfo)
-        {
-            //Set URI to the specific function API
-            string url = $"{this.baseUrl}login";
-            try
-            {
-                //Call the server API
-                string json = JsonSerializer.Serialize(userInfo);
-                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await client.PostAsync(url, content);
-                //Check status
-                if (response.IsSuccessStatusCode)
-                {
-                    //Extract the content as string
-                    string resContent = await response.Content.ReadAsStringAsync();
-                    //Desrialize result
-                    JsonSerializerOptions options = new JsonSerializerOptions
-                    {
-                        PropertyNameCaseInsensitive = true
-                    };
-                    User? result = JsonSerializer.Deserialize<User>(resContent, options);
-                    return result;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            catch (Exception ex)
-            {
                 return null;
             }
         }

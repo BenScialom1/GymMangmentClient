@@ -16,23 +16,26 @@
                    TextColor="Black"/>
 
             <!-- Email Field -->
-            <Entry x:Name="EmailEntry"
-                   Placeholder="Email"
-                   Keyboard="Email"
-                   TextColor="Black"
-                   BackgroundColor="#F0F0F0"
-                   Margin="0,10"
-                   
-                   />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Email" Grid.Column="0" />
+                <Label Text="{Binding EmailError}" IsVisible="{Binding ShowEmailError}" Grid.Column="1"  TextColor="CadetBlue"/>
+            </Grid>
+            <Entry Placeholder="Type Email" Text="{Binding Email}"  />
 
             <!-- Username Field -->
-            <Entry x:Name="UsernameEntry"
-                   Placeholder="Username"
-                   TextColor="Black"
-                   BackgroundColor="#F0F0F0"
-                   Margin="0,10"
-                   
-                   />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="User Name" Grid.Column="0"  />
+                <Label Text="{Binding NameError}" IsVisible="{Binding ShowNameError}" Grid.Column="1"  />
+            </Grid>
+            <Entry Placeholder="Type First Name" Text="{Binding Name}"  />
 
             <!-- Password Field -->
             <Entry x:Name="PasswordEntry"
@@ -43,12 +46,13 @@
                    Margin="0,10"
                    
                    />
+            <Label Text="{Binding PasswordError}" IsVisible="{Binding ShowPasswordError}"  />
 
             <!-- Birthday Picker -->
             <DatePicker x:Name="BirthdayPicker"
                         Date="{Binding DateOfBirth}"
                         MinimumDate="1900-01-01"
-                        MaximumDate="2011-01-01"
+                        MaximumDate="{Binding MinDate}"
                         BackgroundColor="#F0F0F0"
                         Margin="0,10"
                        />
@@ -66,7 +70,7 @@
             <Picker x:Name="DifficultyPicker"
                     Title="Select Difficulty"
                     BackgroundColor="#F0F0F0"
-                    Margin="0,10"
+                    Margin="0,10" SelectedItem="{Binding Difficulty}"
                    >
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
@@ -104,7 +108,8 @@
                     HeightRequest="50"
                     VerticalOptions="Center"
                     HorizontalOptions="FillAndExpand"
-                    Margin="0,20"/>
+                    Margin="0,20"
+                     Command="{Binding RegisterCommand}" IsEnabled="{Binding NotInServerCall}"/>
 
         </VerticalStackLayout>
     </ScrollView>

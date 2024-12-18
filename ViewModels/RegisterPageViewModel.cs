@@ -17,6 +17,9 @@ namespace GymMangmentClient.ViewModels
             RegisterCommand = new Command(OnRegister);
             CancelCommand = new Command(OnCancel);
             IsPassword = true;
+            NameError = "Name is required";
+            EmailError = "Email is required";
+            PasswordError = "Password must be at least 4 characters long and contain letters and numbers";
         }
         #region Name
         private bool showNameError;
@@ -157,7 +160,7 @@ namespace GymMangmentClient.ViewModels
             get => isPassword;
             set
             {
-                IsPassword = value;
+                isPassword = value;
                 OnPropertyChanged("IsPassword");
 
             }
@@ -166,6 +169,78 @@ namespace GymMangmentClient.ViewModels
         public void OnShowPassword()
         {
             isPassword = !isPassword;// there is a chance that i need a cpital  
+        }
+        #endregion
+        #region BirthDate
+        private bool showDateOfBirthError;
+        public bool ShowDateOfBirthError
+        {
+            get => showDateOfBirthError;
+            set
+            {
+                showDateOfBirthError = value; OnPropertyChanged("ShowDateOfBirthError");
+            }
+        }
+        private DateTime dateOfBirth;
+        public DateTime DateOfBirth
+        {
+            get => dateOfBirth;
+            set
+            {
+                dateOfBirth = value;
+                ValidateDateOfBirth();
+                OnPropertyChanged("DateOfBirth");
+            }
+        }
+
+        private DateTime minDate;
+        public DateTime MinDate
+        {
+            get => DateTime.Now.AddYears(-14);
+        }
+
+        private string dateOfBirthError;
+        public string DateOfBirthError
+        {
+            get => dateOfBirthError;
+            set
+            {
+                dateOfBirthError = value; OnPropertyChanged("DateOfBirthError");
+            }
+        }
+        private void ValidateDateOfBirth()
+        {
+            
+                this.ShowDateOfBirthError = false;
+
+        }
+
+
+        #endregion
+        #region Address
+        private string address;
+        public string Address
+        {
+            get => address;
+            set
+            {
+                address = value;
+
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+        #region Difficulty
+        private string difficulty;
+        public string Difficulty
+        {
+            get => difficulty;
+            set
+            {
+                difficulty = value;
+               
+                OnPropertyChanged();
+            }
         }
         #endregion
         public Command RegisterCommand { get; }
@@ -185,6 +260,7 @@ namespace GymMangmentClient.ViewModels
                     Username = Name,
                     Email = Email,
                     Password = Password,
+                    BirthDate = DateOnly.FromDateTime(this.DateOfBirth)
 
                 };
 
@@ -213,6 +289,14 @@ namespace GymMangmentClient.ViewModels
         public void OnCancel()
         {
             ((App)(Application.Current)).MainPage.Navigation.PopAsync();
+        }
+
+        private void DateTimeExaple()
+        {
+            DateOnly d = DateOnly.FromDateTime(DateTime.Now);
+
+            DateOnly d1 = DateOnly.FromDateTime(this.DateOfBirth);
+
         }
     }
 }

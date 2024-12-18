@@ -17,14 +17,15 @@ namespace GymMangmentClient
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-            builder.Services.AddSingleton<LoginPage>();
-            builder.Services.AddSingleton<LoginPageViewModel>();
-            builder.Services.AddSingleton<Register>();
-            builder.Services.AddSingleton<RegisterPageViewModel>();
+            builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddTransient<LoginPageViewModel>();
+            builder.Services.AddTransient<Register>();
+            builder.Services.AddTransient<RegisterPageViewModel>();
+            builder.Services.AddTransient<AppShell>();
             builder.Services.AddSingleton<GymMangmentWebApi>();
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
