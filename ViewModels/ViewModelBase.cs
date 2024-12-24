@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GymMangmentClient.ViewModels
 {
-    public class ViewModelBase:ContentPage
+    public class ViewModelBase: INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

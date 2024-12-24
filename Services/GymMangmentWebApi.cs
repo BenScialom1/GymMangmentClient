@@ -17,8 +17,8 @@ namespace GymMangmentClient.Services
         private JsonSerializerOptions jsonSerializerOptions;
 
         // כתובת הבסיס לכתובת השרת מותאמת לפי פלטפורמות ההרצה
-        public static string BaseAddress = DeviceInfo.Platform == DevicePlatform.Android ? "https://v3lhprd7-5021.uks1.devtunnels.ms/api/" : "http://localhost:5021/api/";
-        public static string ImageUrl = DeviceInfo.Platform == DevicePlatform.Android ? "https://v3lhprd7-5021.uks1.devtunnels.ms/images/" : "http://localhost:5021/images/";
+        public static string BaseAddress = "https://bt9s0b0g-5046.euw.devtunnels.ms/api/";
+        public static string ImageUrl = "https://bt9s0b0g-5046.euw.devtunnels.ms/images/";
 
         // אובייקט של מחלקת השירות שמכיל את כתובת הבסיס לשרת
         private string baseUrl;

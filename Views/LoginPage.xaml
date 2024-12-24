@@ -45,8 +45,8 @@
                                 IsEnabled="{Binding NotInServerCall}" />
 
                         <Label Text="{Binding ErrorMsg}" 
-                               TextColor="Red" 
-                               HorizontalOptions="Center" />
+TextColor="Red" 
+HorizontalOptions="Center" />
 
                         <Label Text="Don't have an account? Register"
                                TextColor="Blue"
@@ -59,6 +59,7 @@
                         </Label>
 
                         <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red" />
+                        
                     </StackLayout>
                 </Frame>
             </StackLayout>
