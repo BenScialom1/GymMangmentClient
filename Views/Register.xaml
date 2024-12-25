@@ -1,77 +1,94 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GymMangmentClient.Views.Register"
-             xmlns:viewmodel="clr-namespace:GymMangmentClient.ViewModels"
-             x:DataType="viewmodel:RegisterPageViewModel"
-             Title="הרשמה">
+<ContentPage
+    x:Class="GymMangmentClient.Views.Register"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:GymMangmentClient.ViewModels"
+    Title="הרשמה"
+    x:DataType="viewmodel:RegisterPageViewModel">
     <ScrollView>
         <VerticalStackLayout Spacing="20">
 
-            <!-- Title Section -->
-            <Label Text="Create Account"
-                   FontSize="28"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Center"
-                   TextColor="Black"/>
+            <!--  Title Section  -->
+            <Label
+                FontAttributes="Bold"
+                FontSize="28"
+                HorizontalOptions="Center"
+                Text="Create Account"
+                TextColor="Black" />
 
-            <!-- Email Field -->
+            <!--  Email Field  -->
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Label Text="Email" Grid.Column="0" />
-                <Label Text="{Binding EmailError}" IsVisible="{Binding ShowEmailError}" Grid.Column="1"  TextColor="Red"/>
+                <Label Grid.Column="0" Text="Email" />
+                <Label
+                    Grid.Column="1"
+                    IsVisible="{Binding ShowEmailError}"
+                    Text="{Binding EmailError}"
+                    TextColor="Red" />
             </Grid>
-            <Entry Placeholder="Type Email" Text="{Binding Email}"  />
+            <Entry Placeholder="Type Email" Text="{Binding Email}" />
 
-            <!-- Username Field -->
+            <!--  Username Field  -->
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Label Text="User Name" Grid.Column="0"  />
-                <Label Text="{Binding NameError}" IsVisible="{Binding ShowNameError}" Grid.Column="1" TextColor="Red"  />
+                <Label Grid.Column="0" Text="User Name" />
+                <Label
+                    Grid.Column="1"
+                    IsVisible="{Binding ShowNameError}"
+                    Text="{Binding NameError}"
+                    TextColor="Red" />
             </Grid>
-            <Entry Placeholder="Type First Name" Text="{Binding Name}"  />
+            <Entry Placeholder="Type First Name" Text="{Binding Name}" />
+            <Label Text="Password"/>
 
-            <!-- Password Field -->
-            <Entry x:Name="PasswordEntry"
-                   Placeholder="Password"
-                   IsPassword="True"
-                   TextColor="Black"
-                   BackgroundColor="#F0F0F0"
-                   Margin="0,10"
-                   
-                   />
-            <Label Text="{Binding PasswordError}" IsVisible="{Binding ShowPasswordError}" TextColor="Red"  />
+            <!--  Password Field  -->
+            <Label
+                IsVisible="{Binding ShowPasswordError}"
+                Text="{Binding PasswordError}"
+                TextColor="Red" />
+            <Entry
+                x:Name="PasswordEntry"
+                Margin="0,10"
+                BackgroundColor="#F0F0F0"
+                IsPassword="True"
+                Placeholder="Password"
+                Text="{Binding Password}"
+                TextColor="Black" />
+            <Label
+                Text="Birthday"/>
 
-            <!-- Birthday Picker -->
-            <DatePicker x:Name="BirthdayPicker"
-                        Date="{Binding DateOfBirth}"
-                        MinimumDate="1900-01-01"
-                        MaximumDate="{Binding MinDate}"
-                        BackgroundColor="#F0F0F0"
-                        Margin="0,10"
-                       />
+            <!--  Birthday Picker  -->
+            <DatePicker
+                x:Name="BirthdayPicker"
+                Margin="0,10"
+                BackgroundColor="#F0F0F0"
+                Date="{Binding DateOfBirth}"
+                MaximumDate="{Binding MinDate}"
+                MinimumDate="1930-01-01" />
 
-            <!-- Address Field -->
-            <Editor x:Name="AddressEditor"
-                    Placeholder="Enter Address"
-                    HeightRequest="100"
-                    TextColor="Black"
-                    BackgroundColor="#F0F0F0"
-                    Margin="0,10"
-                   />
+            <!--  Address Field  -->
+            <Editor
+                x:Name="AddressEditor"
+                Margin="0,10"
+                BackgroundColor="#F0F0F0"
+                HeightRequest="100"
+                Placeholder="Enter Address"
+                TextColor="Black" />
 
-            <!-- Difficulty Dropdown -->
-            <Picker x:Name="DifficultyPicker"
-                    Title="Select Difficulty"
-                    BackgroundColor="#F0F0F0"
-                    Margin="0,10" SelectedItem="{Binding Difficulty}"
-                   >
+            <!--  Difficulty Dropdown  -->
+            <Picker
+                x:Name="DifficultyPicker"
+                Title="Select Difficulty"
+                Margin="0,10"
+                BackgroundColor="#F0F0F0"
+                SelectedItem="{Binding Difficulty}">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Beginner</x:String>
@@ -81,35 +98,45 @@
                 </Picker.ItemsSource>
             </Picker>
 
-            <!-- Gender Selection -->
-            <StackLayout Orientation="Horizontal" Spacing="20" HorizontalOptions="Center">
-                <RadioButton GroupName="Gender"
-                             Content="Male"
-                             Value="Male"
-                             BackgroundColor="Transparent"
-                             TextColor="Black"/>
-                <RadioButton GroupName="Gender"
-                             Content="Female"
-                             Value="Female"
-                             BackgroundColor="Transparent"
-                             TextColor="Black"/>
-                <RadioButton GroupName="Gender"
-                             Content="Other"
-                             Value="Other"
-                             BackgroundColor="Transparent"
-                             TextColor="Black"/>
+            <!--  Gender Selection  -->
+            <StackLayout
+                HorizontalOptions="Center"
+                Orientation="Horizontal"
+                RadioButtonGroup.GroupName="Gender"
+                RadioButtonGroup.SelectedValue="{Binding Gender}"
+                Spacing="20">
+                <RadioButton
+                    BackgroundColor="Transparent"
+                    Content="Male"
+                    GroupName="Gender"
+                    TextColor="Black"
+                    Value="1" />
+                <RadioButton
+                    BackgroundColor="Transparent"
+                    Content="Female"
+                    GroupName="Gender"
+                    TextColor="Black"
+                    Value="2" />
+                <RadioButton
+                    BackgroundColor="Transparent"
+                    Content="Other"
+                    GroupName="Gender"
+                    TextColor="Black"
+                    Value="3" />
             </StackLayout>
 
-            <!-- Submit Button -->
-            <Button Text="Register"
-                    BackgroundColor="CadetBlue"
-                    TextColor="White"
-                    CornerRadius="20"
-                    HeightRequest="50"
-                    VerticalOptions="Center"
-                    HorizontalOptions="FillAndExpand"
-                    Margin="0,20"
-                     Command="{Binding RegisterCommand}" IsEnabled="{Binding NotInServerCall}"/>
+            <!--  Submit Button  -->
+            <Button
+                Margin="0,20"
+                BackgroundColor="CadetBlue"
+                Command="{Binding RegisterCommand}"
+                CornerRadius="20"
+                HeightRequest="50"
+                HorizontalOptions="FillAndExpand"
+                IsEnabled="{Binding NotInServerCall}"
+                Text="Register"
+                TextColor="White"
+                VerticalOptions="Center" />
 
         </VerticalStackLayout>
     </ScrollView>

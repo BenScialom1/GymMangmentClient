@@ -16,6 +16,7 @@ namespace GymMangmentClient.ViewModels
             this.proxy = proxy;
             RegisterCommand = new Command(OnRegister);
             CancelCommand = new Command(OnCancel);
+            ShowPasswordCommand = new Command(OnShowPassword);
             IsPassword = true;
             NameError = "Name is required";
             EmailError = "Email is required";
@@ -76,7 +77,7 @@ namespace GymMangmentClient.ViewModels
             set
             {
                 email = value;
-
+                ValidateEmail();
             }
         }
         private string emailError;
@@ -168,7 +169,7 @@ namespace GymMangmentClient.ViewModels
         public Command ShowPasswordCommand { get; }
         public void OnShowPassword()
         {
-            isPassword = !isPassword;// there is a chance that i need a cpital  
+            isPassword = !isPassword;
         }
         #endregion
         #region BirthDate
@@ -243,7 +244,21 @@ namespace GymMangmentClient.ViewModels
             }
         }
         #endregion
+        #region Gender
+        private int gender;
+        public int Gender
+        {
+            get => gender;
+            set
+            {
+                gender = value;
+
+                OnPropertyChanged();
+            }
+        }
+        #endregion
         public Command RegisterCommand { get; }
+
         public Command CancelCommand { get; }
         public async void OnRegister()
         {
@@ -260,7 +275,10 @@ namespace GymMangmentClient.ViewModels
                     Username = Name,
                     Email = Email,
                     Password = Password,
-                    BirthDate = DateOnly.FromDateTime(this.DateOfBirth)
+                    BirthDate = DateOnly.FromDateTime(this.DateOfBirth),
+                    Address = Address,
+                    Difficulty = Difficulty,
+                    GenderId = Gender
 
                 };
 
