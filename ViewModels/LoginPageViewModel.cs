@@ -110,6 +110,8 @@ namespace GymMangmentClient.ViewModels
         private void OnRegister()
         {
             ErrorMsg = "";
+
+
             Email = "";
             Password = "";
             // Navigate to the Register View page

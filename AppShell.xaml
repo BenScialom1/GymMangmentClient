@@ -9,6 +9,10 @@
     Title="GymMangmentClient">
 
     <ShellContent
+        Title="HomePage"
+        ContentTemplate="{DataTemplate views:HomePage}"
+        Route="HomePage"/>
+    <ShellContent
         Title="Login"
         ContentTemplate="{DataTemplate views:LoginPage}"
         Route="Login" />

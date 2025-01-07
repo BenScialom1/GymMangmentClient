@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GymMangmentClient.Views.HomePage"
+             Title="HomePage">
+    <Grid RowDefinitions="*, 1*" ColumnDefinitions="*, *">
+        <Image Source="gym_background.jpg" Aspect="AspectFill" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+        <BoxView Color="Black" Opacity="0.4" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+
+        <!-- Header Text -->
+        <Label Text="Welcome to FitLife Gym"
+               FontSize="36"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               VerticalOptions="Start"
+               TextColor="White"
+               Margin="20,50,20,0"/>
+
+        <!-- Gym Logo Image -->
+        <Image Source="gym_logo.png" HorizontalOptions="Center"
+               VerticalOptions="Start" HeightRequest="150" Grid.Row="1"
+               Margin="0,100,0,0"/>
+
+        <!-- Gym Selection Picker -->
+        <Picker x:Name="GymPicker" 
+                Title="Select Your Gym"
+                SelectedIndexChanged="OnGymSelected"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                Margin="0,250,0,0"
+                WidthRequest="300">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <String>FitLife Gym Downtown</String>
+                    <String>FitLife Gym Uptown</String>
+                    <String>Powerhouse Gym</String>
+                    <String>FlexFit Gym</String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <!-- Navigation Dropdown -->
+        <Button Text="Go to Pages"
+                BackgroundColor="#ff6f61"
+                TextColor="White"
+                FontSize="20"
+                WidthRequest="200"
+                HeightRequest="50"
+                CornerRadius="25"
+                HorizontalOptions="Center"
+                VerticalOptions="End"
+                Margin="0,0,0,50"
+                Clicked="OnNavigateClicked"/>
+    </Grid>
+</ContentPage>
