@@ -22,7 +22,7 @@
                Margin="0,100,0,0"/>
 
         <!-- Gym Selection Picker -->
-        <Picker x:Name="GymPicker" 
+        <!--<Picker x:Name="GymPicker" 
                 Title="Select Your Gym"
                 SelectedIndexChanged="OnGymSelected"
                 HorizontalOptions="Center"
@@ -37,10 +37,10 @@
                     <String>FlexFit Gym</String>
                 </x:Array>
             </Picker.ItemsSource>
-        </Picker>
+        </Picker>-->
 
         <!-- Navigation Dropdown -->
-        <Button Text="Go to Pages"
+        <!--<Button Text="Go to Pages"
                 BackgroundColor="#ff6f61"
                 TextColor="White"
                 FontSize="20"
@@ -50,6 +50,6 @@
                 HorizontalOptions="Center"
                 VerticalOptions="End"
                 Margin="0,0,0,50"
-                Clicked="OnNavigateClicked"/>
+                Clicked="OnNavigateClicked"/>-->
     </Grid>
 </ContentPage>

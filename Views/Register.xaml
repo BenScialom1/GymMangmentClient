@@ -46,7 +46,7 @@
                     TextColor="Red" />
             </Grid>
             <Entry Placeholder="Type First Name" Text="{Binding Name}" />
-            <Label Text="Password"/>
+            <Label Text="Password" />
 
             <!--  Password Field  -->
             <Label
@@ -61,8 +61,7 @@
                 Placeholder="Password"
                 Text="{Binding Password}"
                 TextColor="Black" />
-            <Label
-                Text="Birthday"/>
+            <Label Text="Birthday" />
 
             <!--  Birthday Picker  -->
             <DatePicker
@@ -80,6 +79,7 @@
                 BackgroundColor="#F0F0F0"
                 HeightRequest="100"
                 Placeholder="Enter Address"
+                Text="{Binding Address}"
                 TextColor="Black" />
 
             <!--  Difficulty Dropdown  -->
